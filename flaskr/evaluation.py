@@ -71,18 +71,14 @@ def question1():
     userFile = res.loadUserFile(username)
         
     if request.method == 'POST':
+        print(type(request.form.get('answer')))
         error=None
-        if request.form.get('inlineRadioOptions') == 'option1':
-            answerValue = 'YES'
-        elif request.form.get('inlineRadioOptions') == 'option2':
-            answerValue = 'NO'
-        else:
-            error = "Please provide an answer."
+        answerValue = request.form.get('answer')
         
         if error is None:
             #save the results
             patientID =request.form.get('patient')
-            value = " "
+            value = res.getButtonLabel(answerValue)
             rowValues = [username,'Q1',patientID,answerValue, value]
             res.appendRowsCSVresultsFile(username, rowValues)
             #update session values
@@ -115,13 +111,13 @@ def question1():
                 print(i)
                 break 
         patientID=sampleList[j]
-        print(patientID)
+
     patient = res.loadSampleFile(patientID)
 
     patientID = patientID.replace(".json","")
     patientDetails = patient['patient']['details']
     
-    patientRelevantInf = patient['patient']['informativeData']
+    patientRelevantInf = patient['patient']['completeData']
         
     return render_template('eval/question1.html', patientid=patientID,sample=sample, total=sampleNumber, 
                            left=left, 
@@ -185,8 +181,7 @@ def question2():
             if i == patientID:
                 break 
         patientID=sampleList[j]
-        print(patientID)
-    
+
     patient = res.loadSampleFile(patientID)
     patientDetails = patient['patient']['details']
     patientHealthConditions = patient['patient']['data']

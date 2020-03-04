@@ -1,25 +1,13 @@
-username,question,patientid,answer
-amorales,Q1,28c9d8e3-35da-4ed8-8d47-622b1942a9b0,YES, 
-amorales,Q1,cfefcecb-bcd6-4fdc-9695-d85fcd0240d9,NO, 
-amorales,Q1,5d4a19bf-50e0-4042-aa9a-9d801665facb,NO, 
-amorales,Q1,29760937-c696-4820-9a06-214750f5243f,NO, 
-amorales,Q1,52acaf7c-b1e8-4e18-a0fa-18f062cbcd2b,NO, 
-amorales,Q1,30b7f42e-ddfb-4137-bdb1-578d2a012edc,NO, 
-amorales,Q1,ac404f70-b943-42fd-ac5d-a0b838c4dead,NO, 
-amorales,Q1,4627ce08-3079-499b-a0c6-33f3c2015103,NO, 
-amorales,Q2,27aeefb7-d88c-41cf-b3ff-ed48dbf5163f.json,01,Electric Wheelchair and wheelchair user
-amorales,Q2,b58d273a-8e07-4f2d-8e53-fcced0135a64.json,04,Ashtma and breathing issues
-amorales,Q2,1d3b8879-aad0-41ce-8dbc-2c192bf2f734.json,04,Ashtma and breathing issues
-amorales,Q2,1e10b690-f6c6-4970-bba8-f105efd27aec.json,04,Ashtma and breathing issues
-amorales,Q2,ab3d8830-d726-4270-959e-ce427b41b5ab.json,09,Dexterity problems
-amorales,Q2,a2ea3fb2-9e7b-40e9-bf3d-f5abb93816f4.json,06,Dyslexic and orientation disorders
-amorales,Q1,12875029-8766-420a-b8b9-e4beaee73dd8,NO, 
-amorales,Q1,1d921e7d-eaf0-4145-835c-946f7922fe48,NO, 
-amorales,Q1,37fd8c2b-5f57-4a4b-958a-6bd957941b76,YES, 
-amorales,Q1,c6a50021-f5d5-4ce3-abed-7d6e6d37b1a3,NO, 
-amorales,Q1,1ea74f43-a5ec-4cc2-9ee3-f373ff6bd700,NO, 
-amorales,Q1,05642207-bc2c-435b-b7a6-16d63781c2f9,NO, 
-amorales,Q1,1a6c06fa-29d7-448b-8e15-7f9c3b07f316,NO, 
-amorales,Q1,085211d3-4a9c-4eab-8433-34a8790bd2cc,NO, 
-amorales,Q1,a606d223-5d3a-4480-88f2-c04d5f37370c,NO, 
-amorales,Q2,36c6569e-6115-454e-830c-3620836ef3da.json,03,Mobility impaired person
+username,question,patientid,answer,value
+amorales,Q1,27aeefb7-d88c-41cf-b3ff-ed48dbf5163f,4,No
+amorales,Q1,216e106f-4f62-42f5-9e4c-4f435cbd940c,4,No
+amorales,Q1,20e7d770-3d0c-4b48-962a-b23de923ef47,4,No
+amorales,Q1,28c9d8e3-35da-4ed8-8d47-622b1942a9b0,4,No
+amorales,Q1,36f83e73-7c7d-4db3-b2db-d8741f9a24a9,4,No
+amorales,Q1,cfefcecb-bcd6-4fdc-9695-d85fcd0240d9,3,Yes (both)
+amorales,Q1,c4f6665a-d38f-4fce-9e4c-43e8f76759b4,4,No
+amorales,Q1,204d247c-f15a-40e2-b841-cac96bb03628,4,No
+amorales,Q1,497dba9f-9921-4228-b36f-e7cc3bb34ca8,2,Yes (chronic)
+amorales,Q1,3dd8be55-bebb-43ee-a552-8bd7a9b4b34a,4,No
+amorales,Q1,5a89fa35-06a0-4fad-bc0f-1d4ce1b9f115,4,No
+amorales,Q1,b9ddb869-10b7-460e-9442-51c29740e92b,4,No

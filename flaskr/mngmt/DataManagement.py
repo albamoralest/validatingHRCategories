@@ -136,3 +136,15 @@ class DataManagement():
             if i['id'] == identifier:
                 return i['name']
             
+    def getButtonLabel(self, cod):
+        if cod == "1":
+            return "Yes (recent)"
+        elif cod == "2":
+            return "Yes (chronic)"
+        elif cod == "3":
+            return "Yes (both)"
+        elif cod == "4":
+            return "No"
+        elif cod == "5":
+            return "I cannot say"
+        
