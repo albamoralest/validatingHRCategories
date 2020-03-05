@@ -8,6 +8,12 @@ $(document).ready(function () {
 	  "pageLength": 10
   });
   
+  $("#table_distinct").DataTable({
+	  "order": [[ 3, "desc" ]],
+	  "lengthChange": false,
+	  "pageLength": 10
+  });
+  
   $("#table_details").DataTable({
 	  "lengthChange": false,
 	  "paging":   false,

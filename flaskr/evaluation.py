@@ -118,11 +118,11 @@ def question1():
     patientDetails = patient['patient']['details']
     
     patientRelevantInf = patient['patient']['completeData']
+    patientDistinctDatapoints = res.getDistinctDatapoints(patient['patient']['completeData'])
         
     return render_template('eval/question1.html', patientid=patientID,sample=sample, total=sampleNumber, 
-                           left=left, 
+                           left=left, distinctDatapoints=patientDistinctDatapoints,
                            title='Question 1', details=patientDetails,relevant=patientRelevantInf)
-
 
 @bp.route('/question2', methods=('GET', 'POST'))
 def question2():
@@ -185,6 +185,7 @@ def question2():
     patient = res.loadSampleFile(patientID)
     patientDetails = patient['patient']['details']
     patientHealthConditions = patient['patient']['data']
+    
     
     return render_template('eval/question2.html',patientid=patientID,sample=sample, left=left,
                            details=patientDetails,conditions=patientHealthConditions,

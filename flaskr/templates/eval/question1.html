@@ -25,12 +25,12 @@
 			<p><h4> Does this person need special assistance in case of a fire evacuation?
 			</h4></p>
 		</div>
-		<ul class="list-group list-group-flush">
+		<ul class="list-group list-group-flush panel">
 			
 			<li class="list-group-item">	
 				<div class="row">
 					<div class="col-sm-8" aria-label="Left Align">
-						<p><h4> Person's details</h4> </p>
+						<h4> Person's details</h4> 
 						{{patientid}}
 						<table class="table table-hover table-bordered ui celled table" id="table_details">
 					    	<thead>
@@ -79,16 +79,67 @@
 			</li>
 		</ul>
 		<div class="container-sm table-responsive">
-			<p><h4> Health Records</h4> </p>
+			<h4> Health Records (distinct datapoints)</h4>
+			{% if distinctDatapoints %}
+	        <table id="table_distinct" class="table table-hover table-sm table-bordered display compact">
+		    	<thead>
+		    		<tr >
+		    			<th>Data Point</th>
+		    			<th>Reason Description</th>
+		    			<th>Description</th>
+		    			<th >Start date</th>
+		    			<th>End date</th>
+		    			
+		   			</tr>
+					</thead>
+			        {% for con in distinctDatapoints %}
+			        	{% for c in distinctDatapoints[con] %}
+			        	<tr>
+			        		{% if con %}
+				               <td> {{ con }}</td>
+				            {% else %}
+				            	<td> </td>
+				            {% endif %}
+				            {% if c['reasonDescription'] %}
+				               <td> {{ c['reasonDescription']['value'] }}</td>
+			               {% else %}
+				            	<td> </td>
+				            {% endif %}
+				            {% if c['description'] %}
+				               <td> {{ c['description']['value'] }}</td>
+			               {% else %}
+				            	<td> </td>
+			               {% endif %}
+				            {% if c['startDate'] %}
+				               <td> {{ c['startDate']['value'] }}</td>
+			               {% else %}
+				            	<td> </td>
+			               {% endif %}
+				            {% if c['endDate'] %}
+				               <td> {{ c['endDate']['value'] }}</td>
+			               {% else %}
+				            	<td> </td>
+			               {% endif %}
+			               
+				        </tr>
+			        	{% endfor %}
+			        {% endfor %}
+	        	</table>
+	        	
+	        {% else %}
+	        	<br><strong>Patients has no relevant information  </strong>
+	        {% endif %}
+		</div>
+		<div class="container-sm table-responsive">
+			<h4> Health Records (all datapoints)</h4>
 			{% if relevant %}
 	        <table id="table_informative" class="table table-hover table-sm table-bordered display compact">
 		    	<thead>
 		    		<tr >
 		    			<th>Data Point</th>
-		    			
-		    			<th>Description</th>
 		    			<th>Reason Description</th>
-		    			<th >Start date</th>
+		    			<th>Description</th>
+		    			<th>Start date</th>
 		    			<th>End date</th>
 		    			
 		   			</tr>
@@ -102,13 +153,13 @@
 				            {% else %}
 				            	<td> </td>
 				            {% endif %}
-				            {% if c['description'] %}
-				               <td> {{ c['description']['value'] }}</td>
+				            {% if c['reasonDescription'] %}
+				               <td> {{ c['reasonDescription']['value'] }}</td>
 			               {% else %}
 				            	<td> </td>
 				            {% endif %}
-				            {% if c['reasonDescription'] %}
-				               <td> {{ c['reasonDescription']['value'] }}</td>
+				            {% if c['description'] %}
+				               <td> {{ c['description']['value'] }}</td>
 			               {% else %}
 				            	<td> </td>
 			               {% endif %}
@@ -130,7 +181,7 @@
 	        	</table>
 	        	
 	        {% else %}
-	        	<br><strong>Patients has no relevant information  </strong></br> 
+	        	<br><strong>Patients has no relevant information  </strong> 
 	        {% endif %}
 			
 		</div>

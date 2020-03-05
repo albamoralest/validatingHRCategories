@@ -148,3 +148,38 @@ class DataManagement():
         elif cod == "5":
             return "I cannot say"
         
+    def getDistinctDatapoints(self, dataPoints):
+        #create a new list, already all the list objects are sorted by description
+        #reason description and date
+        newList = None
+        newDataPoint= {}
+        i=0
+        for a in dataPoints:
+            #con could be encounters, conditions, allergies, etc
+            for con in a:
+                print(con)
+                for c in a[con]['results']['bindings']:
+                    if newList is None:
+                        newList =[]
+                        newList.append(c)
+                        i=0
+                    else:
+                        print(c)
+                        if newList[i]['reasonDescription']['value'] != c['reasonDescription']['value']:
+                            newList.append(c)
+                            i+=1
+                        else:
+                            try:
+                                if newList[i]['description']['value'] != c['description']['value']:
+                                    newList.append(c)
+                                    i+=1
+                            except KeyError:
+                                pass
+            
+            newDataPoint[con]=newList
+            newList=None
+            
+        print(newDataPoint)
+            
+        return newDataPoint
+        
