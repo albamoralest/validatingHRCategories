@@ -3,6 +3,7 @@ import os
 from flask import Flask
 from flask_bootstrap import Bootstrap
 from flaskr import auth, evaluation
+from datetime import datetime
 
 def create_app(test_config=None):
     # create and configure the app, instance of Flask
@@ -39,5 +40,12 @@ def create_app(test_config=None):
     app.add_url_rule('/', endpoint='index')
 
     Bootstrap(app)
+    #2019-08-11T12:02:05.000Z
+    @app.template_filter('datetimeformat')
+    def datetimeformat(value, format='%Y-%m-%d %H:%M'):
+        if value is "" or value is None:
+            return value
+        else:
+            return datetime.strptime(value, '%Y-%m-%dT%H:%M:%S.%fZ').strftime(format)
     
     return app

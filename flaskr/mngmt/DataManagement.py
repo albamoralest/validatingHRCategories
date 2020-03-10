@@ -157,14 +157,12 @@ class DataManagement():
         for a in dataPoints:
             #con could be encounters, conditions, allergies, etc
             for con in a:
-                print(con)
                 for c in a[con]['results']['bindings']:
                     if newList is None:
                         newList =[]
                         newList.append(c)
                         i=0
                     else:
-                        print(c)
                         if newList[i]['reasonDescription']['value'] != c['reasonDescription']['value']:
                             newList.append(c)
                             i+=1
@@ -178,8 +176,6 @@ class DataManagement():
             
             newDataPoint[con]=newList
             newList=None
-            
-        print(newDataPoint)
             
         return newDataPoint
         

@@ -29,9 +29,12 @@
 			
 			<li class="list-group-item">	
 				<div class="row">
-					<div class="col-sm-8" aria-label="Left Align">
+					<div class="col-sm-4" aria-label="Left Align">
 						<h4> Person's details</h4> 
 						{{patientid}}
+						
+				    </div>
+					<div class="col-sm-8">
 						<table class="table table-hover table-bordered ui celled table" id="table_details">
 					    	<thead>
 						 		<tr class="table-active">
@@ -48,32 +51,7 @@
 								<td> {{ details['age'] }}  </td>
 					        </tr>
 					    </table>
-				    </div>
-					<div class="col-sm-4">
-						<div class="list-group">
-							<form class="navbar-form navbar-left" role="navigate" method="post" aria-label="Right Align">
-							  	<!-- 
-							  	<div class="form-check form-check-inline">
-								  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
-								  <label class="form-check-label" for="inlineRadio1">YES</label>
-								</div>
-								<div class="form-check form-check-inline">
-								  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
-								  <label class="form-check-label" for="inlineRadio2">NO</label>
-								</div>
-								 -->
-					 			<input type="hidden" id="custId" name="patient" value={{patientid}}>
-					 				
-								<div class="btn-group btn-group-lg"  role="group" aria-label="Right Align">
-									<button type="submit" value="1" name='answer' class="btn btn-default btn-block">Yes (recent illness)</button>
-									<button type="submit" value="2" name='answer' class="btn btn-default btn-block">Yes (chronic illness)</button>
-									<button type="submit" value="3" name='answer' class="btn btn-default btn-block">Yes (both)</button>
-									<button type="submit" value="4" name='answer' class="btn btn-default btn-block">No</button>
-									<button type="submit" value="5" name='answer' class="btn btn-default btn-block">I cannot say</button>
-								</div>
-								
-							</form>
-						</div>
+						
 					</div>
 				</div>
 			</li>
@@ -111,12 +89,12 @@
 				            	<td> </td>
 			               {% endif %}
 				            {% if c['startDate'] %}
-				               <td> {{ c['startDate']['value'] }}</td>
+				               <td> {{ c['startDate']['value'] | datetimeformat}}</td>
 			               {% else %}
 				            	<td> </td>
 			               {% endif %}
 				            {% if c['endDate'] %}
-				               <td> {{ c['endDate']['value'] }}</td>
+				               <td> {{ c['endDate']['value'] | datetimeformat }}</td>
 			               {% else %}
 				            	<td> </td>
 			               {% endif %}
@@ -129,6 +107,23 @@
 	        {% else %}
 	        	<br><strong>Patients has no relevant information  </strong>
 	        {% endif %}
+		</div>
+		<div class="container-sm table-responsive">
+			<div class="col-sm-4" aria-label="Left Align">
+			</div>
+			<div class="col-sm-8" aria-label="Left Align">
+				<form class="navbar-form navbar-left" role="navigate" method="post" aria-label="Right Align">
+			
+						<input type="hidden" id="custId" name="patient" value={{patientid}}>
+					<div class="btn-group-lg"  role="group" aria-label="Right Align">
+						<button type="submit" value="1" name='answer' class="btn btn-primary ">Yes (recent illness)</button>
+						<button type="submit" value="2" name='answer' class="btn btn-primary ">Yes (chronic illness)</button>
+						<button type="submit" value="3" name='answer' class="btn btn-primary ">Yes (both)</button>
+						<button type="submit" value="4" name='answer' class="btn btn-primary ">No</button>
+						<button type="submit" value="5" name='answer' class="btn btn-primary ">I cannot say</button>
+					</div>
+				</form>
+			</div>
 		</div>
 		<div class="container-sm table-responsive">
 			<h4> Health Records (all datapoints)</h4>
@@ -164,12 +159,12 @@
 				            	<td> </td>
 			               {% endif %}
 				            {% if c['startDate'] %}
-				               <td> {{ c['startDate']['value'] }}</td>
+				               <td> {{ c['startDate']['value'] | datetimeformat }}</td>
 			               {% else %}
 				            	<td> </td>
 			               {% endif %}
 				            {% if c['endDate'] %}
-				               <td> {{ c['endDate']['value'] }}</td>
+				               <td> {{ c['endDate']['value'] | datetimeformat }}</td>
 			               {% else %}
 				            	<td> </td>
 			               {% endif %}

@@ -2,10 +2,8 @@ from flask import (
     Blueprint, flash, g, redirect, render_template, request, url_for
 )
 from werkzeug.exceptions import abort
-
 from flaskr.auth import login_required
 from flaskr.mngmt.DataManagement import DataManagement
-#from flaskr.db import get_db
 
 bp = Blueprint('evaluation', __name__)
 
@@ -190,6 +188,8 @@ def question2():
     return render_template('eval/question2.html',patientid=patientID,sample=sample, left=left,
                            details=patientDetails,conditions=patientHealthConditions,
                            total=sampleNumber)
+
+
 
 @bp.route('/question3', methods=('GET', 'POST'))
 def question3():
