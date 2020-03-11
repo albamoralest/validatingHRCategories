@@ -42,7 +42,8 @@ def create_app(test_config=None):
     Bootstrap(app)
     #2019-08-11T12:02:05.000Z
     @app.template_filter('datetimeformat')
-    def datetimeformat(value, format='%Y-%m-%d %H:%M'):
+    #def datetimeformat(value, format='%Y-%m-%d %H:%M'):
+    def datetimeformat(value, format='%Y-%m-%d'):
         if value is "" or value is None:
             return value
         else:
