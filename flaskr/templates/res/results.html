@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% import 'bootstrap/wtf.html' as wtf %}
+{% import 'bootstrap/utils.html' as utils %}
+
+{% block app_content %}
+
+<div class="container-sm table-responsive">
+	<h4> Health Records (distinct datapoints)</h4>
+	{% if resultList %}
+	
+	<table id="table_informative" class="table table-hover table-sm table-bordered display compact">
+    	<thead>
+    		<tr >
+    			<th>Patient ID</th>
+    			<th>Result AM</th>
+    			<th>Result ED</th>
+   			</tr>
+		</thead>
+        {% for con in resultList %}
+       	<tr>
+           	<td><a href='{{url_for('resu.details', sample=sample,patientid=con)}}'>{{ con }}</a> </td>
+            <td>  </td>
+            <td>  </td>
+		</tr>
+		{% endfor %}
+	</table>
+		
+	{% else %}
+		<br><strong>Patients has no relevant information  </strong>
+	{% endif %}
+</div>
+{% endblock %}

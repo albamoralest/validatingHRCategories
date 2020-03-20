@@ -64,6 +64,15 @@ def login():
             session.clear()
             session['user_id'] = userFile['id']
             session['username'] = username
+            
+            #in case is admin
+            
+            if res.verifyAdmin(userFile):
+                session['admin'] = True
+            else:
+                session['admin'] = False
+            
+            
             return redirect(url_for('index'))
         
         flash(error)
@@ -79,6 +88,7 @@ def load_logged_in_user():
         g.user = None
     else:
         g.user = res.loadUserFile(session.get('username'))
+
 
 
 @bp.route('/logout')

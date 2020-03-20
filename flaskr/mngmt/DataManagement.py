@@ -179,3 +179,13 @@ class DataManagement():
             
         return newDataPoint
         
+    def verifyAdmin(self, userFile):
+        try:
+            print(userFile['admin'])
+            if userFile['admin'] == 'YES':
+                return True
+            else:
+                return False
+        except:
+            return False
+        

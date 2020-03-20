@@ -2,9 +2,9 @@
 
 {% block title %}
         {% if title %}
-        <title>{{ title }} </title>
+        {{ title }} 
         {% else %}
-        <title>Patients' health records and categories</title>
+        Patients' health records and categories
         {% endif %}
         
 {% endblock %}
@@ -33,10 +33,11 @@
                 <ul class="nav navbar-nav">
                 	{% if g.user %}
                 		<li><a href="{{ url_for('index') }}">Home</a></li>
-                	
-	                	
+                		{% if g.user['admin'] %}
+                          <li><a href="{{ url_for('resu.resultsGEE') }}">Compare Results</a></li>
+                          {% endif %}
+                		
 				      	<li><a href="{{ url_for('auth.logout') }}">Log Out</a>
-				      	
 				      	<li><a href="#">Welcome {{ g.user['username'] }} !</a></li>
 					{% else %}
 	                    <li><a href="{{url_for('auth.login', sample=1)}}">Login</a></li>

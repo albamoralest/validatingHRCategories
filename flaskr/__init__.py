@@ -2,7 +2,7 @@ import os
 
 from flask import Flask
 from flask_bootstrap import Bootstrap
-from flaskr import auth, evaluation
+from flaskr import auth, evaluation, results
 from datetime import datetime
 
 def create_app(test_config=None):
@@ -33,10 +33,13 @@ def create_app(test_config=None):
     def hello():
         return 'Hello, World!'
 
-    
+    #REGISTER BLUEPRINTS
     app.register_blueprint(auth.bp)
 
     app.register_blueprint(evaluation.bp)
+    
+    app.register_blueprint(results.bp)
+    
     app.add_url_rule('/', endpoint='index')
 
     Bootstrap(app)

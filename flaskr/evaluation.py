@@ -123,6 +123,7 @@ def question1():
                            title='Question 1', details=patientDetails,relevant=patientRelevantInf)
 
 @bp.route('/question2', methods=('GET', 'POST'))
+@login_required
 def question2():
     
     sample='2'
@@ -195,3 +196,4 @@ def question2():
 def question3():
     
     return render_template('eval/question3.html')
+
