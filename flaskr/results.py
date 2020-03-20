@@ -17,6 +17,8 @@ def resultsGEE():
     
     sampleList = res.returnRandomSample()
     
+    #results
+    
     
     return render_template('res/results.html', resultList=sampleList)
 
