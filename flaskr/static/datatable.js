@@ -21,5 +21,10 @@ $(document).ready(function () {
       "searching": false,
       "info": false
   });
+  
+  $("#table_results").DataTable({
+	  "lengthChange": false,
+	  "pageLength": 25
+  });
   console.log( "ready!" );
 });

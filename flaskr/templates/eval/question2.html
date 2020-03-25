@@ -7,129 +7,133 @@
 	<div class="panel panel-primary">
 		
 		<div class="panel-heading">
-			<h4> Question 2: </h4>
-			<h6>Left {{ left }} out of {{ total }}</h6>
+			<div class="row">
+				<div class="col-sm-8" aria-label="Left Align">
+					<h4> Question 2: </h4> 
+					<p>Assuming that the person need help to evacuate the building:</p>
+				</div>
+				<div class="col-sm-4" aria-label="Right Align">
+					<h6>Left {{ left }} out of {{ total }}</h6>
+					<h4><strong>Fire started during the afternoon on the 29th of October 2019</strong></h4>
+				</div>
+			</div>
 		</div>
 		
 		<div class="panel-body">
-			<p>
-			Assuming that the person need help to evacuate the building:
-			</p>
-			<p><h4> To which type of issue or category, the person could belong according to his/her health record history? (pick one)</h4></p>
+			<h4> According to his/her health record history which (assistance) category the person belongs to? (pick one)</h4>
 		</div>
-		
+
 		<ul class="list-group list-group-flush">
 			<li class="list-group-item">
-		    <div class="row align-items-end">
-	    		<form  role="answer" method="post" class="form-inline">
-					<div class="col-sm-5">
-					</div>
-					<div class="col-sm-6">
-				      <label for="inputState">Category</label>
-				      <select name="category" class="form-control">
-				        <option value="00" selected>Choose one category</option>
-				        <option value="01">Electric Wheelchair and wheelchair user</option>
-				        <option value="03">Mobility impaired person</option>
-				        <option value="04">Ashtma and breathing issues</option>
-				        <option value="05">Visually impaired person</option>
-				        <option value="06">Dyslexic and orientation disorders</option>
-				        <option value="07">Learning difficulty and autism</option>
-				        <option value="08">Mental Health problems</option>
-				        <option value="09">Dexterity problems</option>
-				      </select>
+				<div class="row">
+					<div class="col-sm-4" aria-label="Left Align">
+						<h4> Person's details</h4> 
+						{{patientid}}
+						
 				    </div>
 					
-					<div class="col-sm-1" >
-					<div class="text-left" >
-						<input type="hidden" id="custId" name="patient" value={{patientid}}>
-						<button type="submit" class="btn btn-default btn-lg">Next</button>
-						  </div>
-					</div>
-				</form>
-			</div>
+					<div class="col-sm-8" aria-label="Left Align">
+						<table class="table table-hover table-bordered ui celled table" id="table_details">
+					    	<thead>
+						 		<tr class="table-active">
+						 			<th>First Name</th>
+						 			<th>Last Name</th>
+						 			<!-- <th>DOB</th>  -->
+						 			<th>Age</th>
+								</tr>
+							</thead>
+					        <tr>
+								<td> {{ details['first'] }}</td>
+								<td> {{ details['last'] }}  </td>
+								<!-- <td> {{ details['birthDate'] }}  </td>  -->
+								<td> {{ details['age'] }}  </td>
+					        </tr>
+				    	</table>
+				    </div>
+				</div>	
 			</li>
-			
-			<li class="list-group-item">
-			<div class="row">
-				<p><h4> Person's details</h4> </p>
-				<div class="col-sm-8" aria-label="Left Align">
-					<table class="table table-hover table-bordered">
-				    	<thead>
-					 		<tr class="table-active">
-					 			<th>First Name</th>
-					 			<th>Last Name</th>
-					 			<th>DOB</th>
-					 			<th>Age</th>
-							</tr>
-						</thead>
-				        <tr>
-							<td> {{ details['first'] }}</td>
-							<td> {{ details['last'] }}  </td>
-							<td> {{ details['birthDate'] }}  </td>
-							<td> {{ details['age'] }}  </td>
+		</ul>
+		
+		<div class="panel-body container-sm table-responsive ">
+			<h4> Health Records (all data points)</h4>
+			{% if relevant %}
+	        <table id="table_informative" class="table table-hover table-sm table-bordered display compact">
+		    	<thead>
+		    		<tr >
+		    			<th>Data Point</th>
+		    			<th>Reason Description</th>
+		    			<th>Description</th>
+		    			<th>Start date</th>
+		    			<th>End date</th>
+		    			
+		   			</tr>
+				</thead>
+		        {% for i in relevant %}
+		        	{% for con in i %}
+			        	{% for c in i[con]['results']['bindings'] %}
+			        	<tr>
+			        		{% if con %}
+				               <td> {{ con }}</td>
+				            {% else %}
+				            	<td> </td>
+				            {% endif %}
+				            {% if c['reasonDescription'] %}
+				               <td> {{ c['reasonDescription']['value'] }}</td>
+			               {% else %}
+				            	<td> </td>
+				            {% endif %}
+				            {% if c['description'] %}
+				               <td> {{ c['description']['value'] }}</td>
+			               {% else %}
+				            	<td> </td>
+			               {% endif %}
+				            {% if c['startDate'] %}
+				               <td> {{ c['startDate']['value'] | datetimeformat }}</td>
+			               {% else %}
+				            	<td> </td>
+			               {% endif %}
+				            {% if c['endDate'] %}
+				               <td> {{ c['endDate']['value'] | datetimeformat }}</td>
+			               {% else %}
+				            	<td> </td>
+			               {% endif %}
+			               
 				        </tr>
-			    	</table>
-			    </div>
-			</div>	
-				</li>
-			
-				<div class="container-sm table-responsive">
-				<p><h4> Health Records</h4> </p>
-					{% if conditions %}
-			        <table id="table_informative" class="table table-hover">
-			    	<thead>
-			    		<tr>
-			    			<th>Data Point</th>
-			    			
-			    			<th>Description</th>
-			    			<th>Reason Description</th>
-			    			<th>Start date</th>
-			    			<th>End date</th>
-			   			</tr>
-					</thead>
-				        {% for i in conditions %}
-				        	{% for con in i %}
-					        	{% for c in i[con]['results']['bindings'] %}
-					        	<tr>
-					        		{% if con %}
-						               <td> {{ con }}</td>
-						            {% else %}
-						            	<td> </td>
-						            {% endif %}
-						            {% if c['description'] %}
-						               <td> {{ c['description']['value'] }}</td>
-					               {% else %}
-						            	<td> </td>
-						            {% endif %}
-						            {% if c['reasonDescription'] %}
-						               <td> {{ c['reasonDescription']['value'] }}</td>
-					               {% else %}
-						            	<td> </td>
-					               {% endif %}
-						            
-						            
-						            {% if c['startDate'] %}
-						               <td> {{ c['startDate']['value'] }}</td>
-					               {% else %}
-						            	<td> </td>
-					               {% endif %}
-						            {% if c['endDate'] %}
-						               <td> {{ c['endDate']['value'] }}</td>
-					               {% else %}
-						            	<td> </td>
-					               {% endif %}
-						        </tr>
-						        {% endfor %}
-					        {% endfor %}
-			        	{% endfor %}
-			         	</table>
-			        {% else %}
-			        	<br><strong>Patients has not recent health records  </strong></br> 
-			        {% endif %}
-					</div>	
-					</ul>
-					
-					
-			</div>
+				        {% endfor %}
+			        {% endfor %}
+	        	{% endfor %}
+	        	</table>
+	        	
+	        {% else %}
+	        	<br><strong>Patients has no relevant information  </strong> 
+	        {% endif %}
+		</div>
+		
+		<div class="panel-body container-sm table-responsive">
+    		<form class="form-inline" role="navigate" method="post" aria-label="Right Align">
+				<div class="col-sm-6">
+				</div>
+				<div class="col-sm-5">
+			      <label for="inputState">Category</label>
+			      <select name="category" class="form-control">
+			        <option value="00" selected>Choose one category</option>
+			        <option value="01">Electric Wheelchair and wheelchair user</option>
+			        <option value="03">Mobility impaired person</option>
+			        <option value="04">Ashtma and breathing issues</option>
+			        <option value="05">Visually impaired person</option>
+			        <option value="06">Dyslexic and orientation disorders</option>
+			        <option value="07">Learning difficulty and autism</option>
+			        <option value="08">Mental Health problems</option>
+			        <option value="09">Dexterity problems</option>
+			      </select>
+		    	</div>
+				<input type="hidden" id="custId" name="patient" value={{patientid}}>
+				<div class="col-sm-1" >
+					<div class="btn-group-lg"  role="group" aria-label="Right Align">
+						<button type="submit" class="btn btn-primary">Next</button>
+					</div>
+				</div>
+			</form>
+		</div>
 
 {% endblock %}

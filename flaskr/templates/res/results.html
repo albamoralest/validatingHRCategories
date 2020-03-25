@@ -3,30 +3,56 @@
 {% import 'bootstrap/utils.html' as utils %}
 
 {% block app_content %}
-
-<div class="container-sm table-responsive">
-	<h4> Health Records (distinct datapoints)</h4>
-	{% if resultList %}
-	
-	<table id="table_informative" class="table table-hover table-sm table-bordered display compact">
-    	<thead>
-    		<tr >
-    			<th>Patient ID</th>
-    			<th>Result AM</th>
-    			<th>Result ED</th>
-   			</tr>
-		</thead>
-        {% for con in resultList %}
-       	<tr>
-           	<td><a href='{{url_for('resu.details', sample=sample,patientid=con)}}'>{{ con }}</a> </td>
-            <td>  </td>
-            <td>  </td>
-		</tr>
-		{% endfor %}
-	</table>
+	<div class="panel panel-primary">
 		
-	{% else %}
-		<br><strong>Patients has no relevant information  </strong>
-	{% endif %}
-</div>
+		<div class="panel-body container-sm table-responsive">
+			<ul class="list-group list-group-flush panel">
+				
+				<li class="list-group-item">	
+					<div class="row">
+						<div class="col-sm-9" aria-label="Left Align">
+							<h4> Health Records (distinct datapoints)</h4>
+						</div>
+						
+						<div class="col-sm-3" aria-label="Left Align">
+							<form class="navbar-form navbar-left" role="navigate" method="post" aria-label="Right Align">
+						
+								<div class="btn-group-lg"  role="group" aria-label="Right Align">
+									<button type="submit" value="1" name='answer' class="btn btn-primary ">Generate sample Q2</button>
+			
+								</div>
+							</form>
+						</div>
+					</div>
+				</li>
+			</ul>
+		</div>
+		
+		<div class="panel-body container-sm table-responsive ">
+			
+			{% if resultList %}
+			
+			<table id="table_results" class="table table-hover table-sm table-bordered display compact">
+		    	<thead>
+		    		<tr >
+		    			<th>Patient ID</th>
+		    			<th>Result AM</th>
+		    			<th>Result ED</th>
+		   			</tr>
+				</thead>
+		        {% for con in resultList %}
+		       	<tr>
+		           	<td><a href='{{ url_for('resu.details', sample=sample,patientid=con) }}'>{{ con }}</a> </td>
+		            <td>  </td>
+		            <td>  </td>
+				</tr>
+				{% endfor %}
+			</table>
+				
+			{% else %}
+				<br><strong>Patients has no relevant information  </strong>
+			{% endif %}
+		</div>
+		
+	</div>
 {% endblock %}

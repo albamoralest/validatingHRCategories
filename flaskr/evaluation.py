@@ -69,7 +69,7 @@ def question1():
     userFile = res.loadUserFile(username)
         
     if request.method == 'POST':
-        print(type(request.form.get('answer')))
+        
         error=None
         answerValue = request.form.get('answer')
         
@@ -106,7 +106,6 @@ def question1():
             i = i.replace(".json","")
             j+=1
             if i == patientID:
-                print(i)
                 break 
         patientID=sampleList[j]
 
@@ -137,7 +136,7 @@ def question2():
         
     if request.method == 'POST':
         error=None
-        print(request.form.get('category'))
+        
         if request.form.get('category') != '00':
             answerValue = request.form.get('category')
         else:
@@ -176,7 +175,6 @@ def question2():
         j = 0
         for i in sampleList:
             j+=1
-            print(patientID)
             if i == patientID:
                 break 
         patientID=sampleList[j]
@@ -184,11 +182,12 @@ def question2():
     patient = res.loadSampleFile(patientID)
     patientDetails = patient['patient']['details']
     patientHealthConditions = patient['patient']['data']
-    
+    patientDistinctDatapoints = res.getDistinctDatapoints(patient['patient']['completeData'])
+    patientRelevantInf = patient['patient']['completeData']
     
     return render_template('eval/question2.html',patientid=patientID,sample=sample, left=left,
-                           details=patientDetails,conditions=patientHealthConditions,
-                           total=sampleNumber)
+                           details=patientDetails,conditions=patientHealthConditions,relevant=patientRelevantInf,
+                           distinctDatapoints=patientDistinctDatapoints,total=sampleNumber)
 
 
 

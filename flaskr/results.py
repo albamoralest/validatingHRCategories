@@ -8,17 +8,36 @@ from flaskr.mngmt.DataManagement import DataManagement
 bp = Blueprint('resu', __name__)
 
 @bp.route('/results', methods=('GET', 'POST'))
+@bp.route('/res/results', methods=('GET', 'POST'))
 @login_required
 def resultsGEE():
+    sample='1'
     #setting a number of samples the user will evaluate
     res = DataManagement()
-    sample='1'
+    
     res.setDirectory(sample)
     
     sampleList = res.returnRandomSample()
     
     #results
-    
+    if request.method == 'POST':
+        
+        error=None
+        answerValue = request.form.get('answer')
+        
+        
+        if answerValue == "1":
+            result = res.generateSampleQ2()
+            print(result)
+            if result:
+                error = "Sample generated"
+            else:
+                error = "Problem generating sample"
+        else:
+            error = "Please select a Category from the list."
+            
+        if error is not None:
+            flash(error)
     
     return render_template('res/results.html', resultList=sampleList)
 

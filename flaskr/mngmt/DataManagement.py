@@ -7,7 +7,7 @@ import os, os.path
 import json
 import random
 from fileinput import filename
-import csv   
+import csv, shutil, time
 from csv import writer
 
 class DataManagement():
@@ -21,7 +21,6 @@ class DataManagement():
         return '<Results {}>'.format(self.body)
     
     def setDirectory(self, sample):
-        print(self.resultsDirectory)
         self.resultsDirectory = os.getcwd()+ '/flaskr/users/'
         
         if sample == '1':
@@ -181,7 +180,6 @@ class DataManagement():
         
     def verifyAdmin(self, userFile):
         try:
-            print(userFile['admin'])
             if userFile['admin'] == 'YES':
                 return True
             else:
@@ -189,3 +187,35 @@ class DataManagement():
         except:
             return False
         
+    def generateSampleQ2(self):
+        self.resultsDirectory = self.resultsDirectory+ 'results.csv'
+        print(self.resultsDirectory)
+        result = False
+        try:
+            with open(self.resultsDirectory, newline='') as f:
+                reader = csv.reader(f)
+                samplelist = list(reader)
+            
+            print(len(samplelist))
+        
+            for item in samplelist:
+                assistance = item[1]
+                idpatient = item[0]
+                print(assistance)
+                
+                if assistance == '1' or assistance == '2' or assistance == '3':
+                    
+                    dir_origin = os.getcwd()+ '/flaskr/sample/' + idpatient + '.json'
+                    dir_destin = os.getcwd()+ '/flaskr/sampleq2/'
+
+                    # if item is a file, copy it
+                    if os.path.isfile(dir_origin):
+                        shutil.copy(dir_origin, dir_destin)
+                        result = True
+                    else:
+                        result = False
+            time.sleep(2)
+        except Exception as e:
+            print("EX: "+ str(e))
+            result = False
+        return result
