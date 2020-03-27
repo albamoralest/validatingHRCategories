@@ -137,21 +137,38 @@ def question2():
     if request.method == 'POST':
         error=None
         
-        if request.form.get('category') != '00':
-            answerValue = request.form.get('category')
-        else:
-            error = "Please select a Category from the list."
-            
+        #Get the values of all the selected reasons of assistance
+        answers = []
+        for i in range(8):
+            nameSelect = 'category'+ str(i)
+            print(nameSelect)
+            if request.form.get(nameSelect):
+                print("Category exist")
+                if request.form.get(nameSelect) != '00':
+                    print("Validating not 00")
+                    answers.append(request.form.get(nameSelect))
+                    print(answers)
+                else:
+                    error = "Please select a Reason from the list."
+                    break;
+                
+        #save the results       
         if error is None:
-            #save the results
-            patientID =request.form.get('patient')
-            cat = res.obtainCategoryName(answerValue)
-            rowValues = [username,'Q2',patientID,answerValue,cat]
-            res.appendRowsCSVresultsFile(username, rowValues)
-            #update session values
-            userFile['q2']['total'] = 1+userFile['q2']['total']
-            userFile['q2']['current'] = patientID
-            res.updateUserFile(username, userFile)
+            print("No error")
+            #for each answer in the list
+            i=0
+            for j in answers:
+                i+=1
+                print(j)
+                patientID =request.form.get('patient')
+                cat = res.obtainCategoryName(j)
+                rowValues = [username,'Q2',patientID,j,cat,i]
+                res.appendRowsCSVresultsFile(username, rowValues)
+            else:
+                #update session values
+                userFile['q2']['total'] = 1+userFile['q2']['total']
+                userFile['q2']['current'] = patientID
+                res.updateUserFile(username, userFile)
         else:
             flash(error)
             
@@ -174,20 +191,25 @@ def question2():
         #find the index of the actual value and select the next ID
         j = 0
         for i in sampleList:
+            i = i.replace(".json","")
             j+=1
             if i == patientID:
                 break 
         patientID=sampleList[j]
 
     patient = res.loadSampleFile(patientID)
+    
+    patientID = patientID.replace(".json","")
     patientDetails = patient['patient']['details']
     patientHealthConditions = patient['patient']['data']
     patientDistinctDatapoints = res.getDistinctDatapoints(patient['patient']['completeData'])
     patientRelevantInf = patient['patient']['completeData']
     
+    reason = res.getCategoriesDic()
+    
     return render_template('eval/question2.html',patientid=patientID,sample=sample, left=left,
                            details=patientDetails,conditions=patientHealthConditions,relevant=patientRelevantInf,
-                           distinctDatapoints=patientDistinctDatapoints,total=sampleNumber)
+                           distinctDatapoints=patientDistinctDatapoints,total=sampleNumber, selectList=reason)
 
 
 

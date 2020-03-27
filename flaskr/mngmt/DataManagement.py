@@ -43,13 +43,13 @@ class DataManagement():
     def returnRandomSample(self):
         randomSampleList = [f for f in os.listdir(self.sampleDirectory) if not f.startswith('.')] 
         return randomSampleList
-    
+    #Load any file from the specified directory
     def loadFile (self, fileName):
         #with open(self.directory+patientid+".json") as json_file:
         with open(self.directory+fileName) as json_file:
             obj = json.load(json_file)
         return obj
-    
+    #load only sample files
     def loadSampleFile (self, fileName):
         with open(self.sampleDirectory+fileName) as json_file:
             obj = json.load(json_file)
@@ -109,7 +109,7 @@ class DataManagement():
             
     def createCSVresultsFile(self,name):
         with open(self.resultsDirectory+name+'.csv', mode='w') as csv_file:
-            fieldnames = ['username', 'question', 'patientid','answer','value']
+            fieldnames = ['username', 'question', 'patientid','answer','value','order']
             writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
         
             writer.writeheader()
@@ -122,6 +122,13 @@ class DataManagement():
             csv_writer.writerow(dictRow)
             
     def obtainCategoryName(self, identifier):
+        categories = self.getCategoriesDic()
+        
+        for i in categories:
+            if i['id'] == identifier:
+                return i['name']
+            
+    def getCategoriesDic(self):
         categories = [{'name':'Electric Wheelchair and wheelchair user', 'id': '01'},
                   {'name':'Mobility impaired person','id': '03'},
                   {'name':'Ashtma and breathing issues','id': '04'},
@@ -130,10 +137,8 @@ class DataManagement():
                   {'name':'Learning difficulty and autism','id': '07'},
                   {'name':'Mental Health problems','id': '08'},
                   {'name':'Dexterity problems','id': '09'}]
-        
-        for i in categories:
-            if i['id'] == identifier:
-                return i['name']
+        return categories
+    
             
     def getButtonLabel(self, cod):
         if cod == "1":
@@ -188,15 +193,12 @@ class DataManagement():
             return False
         
     def generateSampleQ2(self):
-        self.resultsDirectory = self.resultsDirectory+ 'results.csv'
-        print(self.resultsDirectory)
+        self.resultsDirectory = self.resultsDirectory+ 'resultsGSE.csv'
         result = False
         try:
             with open(self.resultsDirectory, newline='') as f:
                 reader = csv.reader(f)
                 samplelist = list(reader)
-            
-            print(len(samplelist))
         
             for item in samplelist:
                 assistance = item[1]
@@ -219,3 +221,21 @@ class DataManagement():
             print("EX: "+ str(e))
             result = False
         return result
+    
+    def getResultsQ1Sys(self):
+        self.directory= self.resultsDirectory
+        systemResults = self.loadFile("sampleSummary4Sys.json")
+        
+        return systemResults
+    
+    def getResultsQ1GSE(self):
+        self.resultsDirectory = self.resultsDirectory+ 'resultsGSE.csv'
+        try:
+            with open(self.resultsDirectory, newline='') as f:
+                reader = csv.reader(f)
+                samplelist = list(reader)
+        except Exception as e:
+            print("EX: "+ str(e))
+             
+        return samplelist
+        

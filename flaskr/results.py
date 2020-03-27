@@ -17,7 +17,8 @@ def resultsGEE():
     
     res.setDirectory(sample)
     
-    sampleList = res.returnRandomSample()
+    sampleList = res.getResultsQ1Sys()
+    resultGSE = res.getResultsQ1GSE()
     
     #results
     if request.method == 'POST':
@@ -39,7 +40,7 @@ def resultsGEE():
         if error is not None:
             flash(error)
     
-    return render_template('res/results.html', resultList=sampleList)
+    return render_template('res/results.html', resultList=sampleList, resGSE=resultGSE)
 
 @bp.route('/details', methods=('GET', 'POST'))
 @bp.route('/res/details', methods=('GET', 'POST'))

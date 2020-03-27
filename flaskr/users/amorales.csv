@@ -1,4 +1,4 @@
-username,question,patientid,answer,value
+username,question,patientid,answer,value,order
 amorales,Q1,27aeefb7-d88c-41cf-b3ff-ed48dbf5163f,4,No
 amorales,Q1,216e106f-4f62-42f5-9e4c-4f435cbd940c,4,No
 amorales,Q1,20e7d770-3d0c-4b48-962a-b23de923ef47,4,No
@@ -1004,8 +1004,5 @@ amorales,Q1,4506c905-91dd-4de7-b8d4-0f0d42a1dde2,4,No
 amorales,Q1,aa1df67e-d768-4165-a8f3-f6f6217515a0,4,No
 amorales,Q1,2e182a1c-af89-4a7b-8283-c51d43b928dd,4,No
 amorales,Q1,ae1c3b93-d50c-4a84-a10f-9a08f0033544,4,No
-amorales,Q2,497dba9f-9921-4228-b36f-e7cc3bb34ca8.json,05,Visually impaired person
-amorales,Q2,07e0c83e-9ab2-49e2-a7b9-8c2d8524e040.json,04,Ashtma and breathing issues
-amorales,Q2,5d4a19bf-50e0-4042-aa9a-9d801665facb.json,04,Ashtma and breathing issues
-amorales,Q2,a8935632-4810-4215-ad74-ead5f093e408.json,03,Mobility impaired person
-amorales,Q2,e87a1cf8-be41-43f4-a661-3893ffe29085.json,04,Ashtma and breathing issues
+amorales,Q2,497dba9f-9921-4228-b36f-e7cc3bb34ca8,03,Mobility impaired person,1
+amorales,Q2,497dba9f-9921-4228-b36f-e7cc3bb34ca8,07,Learning difficulty and autism,2

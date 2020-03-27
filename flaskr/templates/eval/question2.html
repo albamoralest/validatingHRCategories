@@ -55,6 +55,91 @@
 		</ul>
 		
 		<div class="panel-body container-sm table-responsive ">
+			<h4> Health Records (distinct datapoints)</h4>
+			{% if distinctDatapoints %}
+	        <table id="table_distinct" class="table table-hover table-sm table-bordered display compact">
+		    	<thead>
+		    		<tr >
+		    			<th>Data Point</th>
+		    			<th>Reason Description</th>
+		    			<th>Description</th>
+		    			<th >Start date</th>
+		    			<th>End date</th>
+		    			
+		   			</tr>
+					</thead>
+			        {% for con in distinctDatapoints %}
+			        	{% for c in distinctDatapoints[con] %}
+			        	<tr>
+			        		{% if con %}
+				               <td> {{ con }}</td>
+				            {% else %}
+				            	<td> </td>
+				            {% endif %}
+				            {% if c['reasonDescription'] %}
+				               <td> {{ c['reasonDescription']['value'] }}</td>
+			               {% else %}
+				            	<td> </td>
+				            {% endif %}
+				            {% if c['description'] %}
+				               <td> {{ c['description']['value'] }}</td>
+			               {% else %}
+				            	<td> </td>
+			               {% endif %}
+				            {% if c['startDate'] %}
+				               <td> {{ c['startDate']['value'] | datetimeformat}}</td>
+			               {% else %}
+				            	<td> </td>
+			               {% endif %}
+				            {% if c['endDate'] %}
+				               <td> {{ c['endDate']['value'] | datetimeformat }}</td>
+			               {% else %}
+				            	<td> </td>
+			               {% endif %}
+			               
+				        </tr>
+			        	{% endfor %}
+			        {% endfor %}
+	        	</table>
+	        	
+	        {% else %}
+	        	<br><strong>Patients has no relevant information  </strong>
+	        {% endif %}
+		</div>
+		
+		<div class="panel-body container-sm table-responsive">
+    		<form class="form-inline" role="navigate" method="post" aria-label="Right Align">
+				<div class="col-lg-6">
+				
+				</div>
+				<div class="col-lg-5" id="dynamic">
+					<label for="inputState">Reason of assistance</label>
+					<div class="input-group">
+				      
+				      <select name="category0" class="form-control">
+				      	<option value="00" selected>Choose one category</option>
+				      {% for i in selectList %}
+					      <option value="{{ i['id'] }}">{{ i['name'] }}</option>
+				      {% endfor %}
+				      </select>
+				      <span class="input-group-btn">
+					    <button class="btn btn-primary" id="addControl" name="addControl" type="button">+</button>
+					  </span>
+					  
+					</div>
+
+					<input type="hidden" id="custId" name="patient" value={{patientid}}>
+			    </div>
+				
+				<div class="col-lg-1" >
+					<div class="btn-group-lg"  role="group" aria-label="Right Align">
+						<button type="submit" class="btn btn-primary">Next</button>
+					</div>
+				</div>
+			</form>
+		</div>
+		
+		<div class="panel-body container-sm table-responsive ">
 			<h4> Health Records (all data points)</h4>
 			{% if relevant %}
 	        <table id="table_informative" class="table table-hover table-sm table-bordered display compact">
@@ -107,33 +192,6 @@
 	        {% else %}
 	        	<br><strong>Patients has no relevant information  </strong> 
 	        {% endif %}
-		</div>
-		
-		<div class="panel-body container-sm table-responsive">
-    		<form class="form-inline" role="navigate" method="post" aria-label="Right Align">
-				<div class="col-sm-6">
-				</div>
-				<div class="col-sm-5">
-			      <label for="inputState">Category</label>
-			      <select name="category" class="form-control">
-			        <option value="00" selected>Choose one category</option>
-			        <option value="01">Electric Wheelchair and wheelchair user</option>
-			        <option value="03">Mobility impaired person</option>
-			        <option value="04">Ashtma and breathing issues</option>
-			        <option value="05">Visually impaired person</option>
-			        <option value="06">Dyslexic and orientation disorders</option>
-			        <option value="07">Learning difficulty and autism</option>
-			        <option value="08">Mental Health problems</option>
-			        <option value="09">Dexterity problems</option>
-			      </select>
-		    	</div>
-				<input type="hidden" id="custId" name="patient" value={{patientid}}>
-				<div class="col-sm-1" >
-					<div class="btn-group-lg"  role="group" aria-label="Right Align">
-						<button type="submit" class="btn btn-primary">Next</button>
-					</div>
-				</div>
-			</form>
 		</div>
 
 {% endblock %}
