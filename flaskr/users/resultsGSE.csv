@@ -1,6 +1,7 @@
 patientid,ANSWER,VALUE,DIFFERENCE,DECISION,COMMENTS,,,54,90,10,851,PEOPLE THAT NEED ASSISTANCE,15.32%
 497dba9f-9921-4228-b36f-e7cc3bb34ca8,2,Yes (chronic),FALSE,MISTAKE,,,,,,,,, 
 5d4a19bf-50e0-4042-aa9a-9d801665facb,2,Yes (chronic),FALSE,MISTAKE,,,,,,,,,
+07e0c83e-9ab2-49e2-a7b9-8c2d8524e040,2,Yes (both),FALSE,MISTAKE,,,,,,,,,
 46c2a226-4110-4ae2-abd8-e9b9deb0f1b8,4,No,FALSE,MISTAKE,,,,,,,,,
 a8935632-4810-4215-ad74-ead5f093e408,1,Yes (recent),FALSE,MISTAKE,,,,,,,,,
 b4208fee-8cab-4a48-8801-9fa4ac807444,4,No,FALSE,AGREED,Childhood asthma don't apply when adult,,,,,,,,
