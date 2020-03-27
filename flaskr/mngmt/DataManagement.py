@@ -239,3 +239,22 @@ class DataManagement():
              
         return samplelist
         
+    def getGSAnswer(self,identification):
+        self.resultsDirectory = self.resultsDirectory+ 'resultsGSE.csv'
+        result = 0
+        try:
+            with open(self.resultsDirectory, newline='') as f:
+                reader = csv.reader(f)
+                samplelist = list(reader)
+                
+                for item in samplelist:
+                    assistance = item[2]
+                    idpatient = item[0]
+                    
+                    if identification == idpatient:
+                        result=assistance
+                        break
+        except Exception as e:
+            print("EX: "+ str(e))
+            
+        return result

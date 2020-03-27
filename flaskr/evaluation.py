@@ -206,10 +206,11 @@ def question2():
     patientRelevantInf = patient['patient']['completeData']
     
     reason = res.getCategoriesDic()
+    reasonGSE = res.getGSAnswer(patientID)
     
     return render_template('eval/question2.html',patientid=patientID,sample=sample, left=left,
                            details=patientDetails,conditions=patientHealthConditions,relevant=patientRelevantInf,
-                           distinctDatapoints=patientDistinctDatapoints,total=sampleNumber, selectList=reason)
+                           distinctDatapoints=patientDistinctDatapoints,total=sampleNumber, selectList=reason, information=reasonGSE)
 
 
 
