@@ -210,7 +210,7 @@ def question2():
     
     return render_template('eval/question2.html',patientid=patientID,sample=sample, left=left,
                            details=patientDetails,conditions=patientHealthConditions,relevant=patientRelevantInf,
-                           distinctDatapoints=patientDistinctDatapoints,total=sampleNumber, selectList=reason, information=reasonGSE)
+                           distinctDatapoints=patientDistinctDatapoints,total=sampleNumber, selectList=reason, notes=reasonGSE)
 
 
 

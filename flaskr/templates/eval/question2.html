@@ -30,7 +30,6 @@
 					<div class="col-sm-4" aria-label="Left Align">
 						<h4> Person's details</h4> 
 						Id: {{patientid}}
-						<h4> Type: </h4> {{ information }}
 				    </div>
 					
 					<div class="col-sm-8" aria-label="Left Align">
@@ -41,6 +40,8 @@
 						 			<th>Last Name</th>
 						 			<!-- <th>DOB</th>  -->
 						 			<th>Age</th>
+						 			<th>Type</th>
+						 			<th>Note</th>
 								</tr>
 							</thead>
 					        <tr>
@@ -48,6 +49,8 @@
 								<td> {{ details['last'] }}  </td>
 								<!-- <td> {{ details['birthDate'] }}  </td>  -->
 								<td> {{ details['age'] }}  </td>
+								<td> {{ notes[0] }} </td>
+								<td> {{ notes [1] }} </td>
 					        </tr>
 				    	</table>
 				    </div>
