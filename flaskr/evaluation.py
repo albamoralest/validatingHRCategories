@@ -130,24 +130,27 @@ def question2():
     res = DataManagement()
     
     res.setDirectory(sample)
+    
     #Verify if the user already has answered the question
     username = g.user['username']
     userFile = res.loadUserFile(username)
+    
+    #res.setUserSampleDir(username)
         
     if request.method == 'POST':
         error=None
         
         #Get the values of all the selected reasons of assistance
         answers = []
-        for i in range(8):
+        for i in range(9):
             nameSelect = 'category'+ str(i)
-            print(nameSelect)
+            #print(nameSelect)
             if request.form.get(nameSelect):
-                print("Category exist")
+                #print("Category exist")
                 if request.form.get(nameSelect) != '00':
-                    print("Validating not 00")
+                    #print("Validating not 00")
                     answers.append(request.form.get(nameSelect))
-                    print(answers)
+                    #print(answers)
                 else:
                     error = "Please select a Reason from the list."
                     break;
@@ -159,7 +162,7 @@ def question2():
             i=0
             for j in answers:
                 i+=1
-                print(j)
+                #print(j)
                 patientID =request.form.get('patient')
                 cat = res.obtainCategoryName(j)
                 rowValues = [username,'Q2',patientID,j,cat,i]
@@ -206,7 +209,8 @@ def question2():
     patientRelevantInf = patient['patient']['completeData']
     
     reason = res.getCategoriesDic()
-    reasonGSE = res.getGSAnswer(patientID)
+    #reasonGSE = res.getGSAnswer(patientID)
+    reasonGSE = None
     
     return render_template('eval/question2.html',patientid=patientID,sample=sample, left=left,
                            details=patientDetails,conditions=patientHealthConditions,relevant=patientRelevantInf,

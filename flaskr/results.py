@@ -17,25 +17,33 @@ def resultsGEE():
     
     res.setDirectory(sample)
     
-    sampleList = res.getResultsQ1Sys()
-    resultGSE = res.getResultsQ1GSE()
+    #sampleList = res.getResultsQ1Sys()
+    #resultGSE = res.getResultsQ1GSE()
+    sampleList = None
+    resultGSE = None
     
     #results
     if request.method == 'POST':
         
         error=None
         answerValue = request.form.get('answer')
+        useridentifier = request.form.get('username')
+        userExist = res.verifyUser(useridentifier)
         
-        
-        if answerValue == "1":
-            result = res.generateSampleQ2()
-            print(result)
-            if result:
-                error = "Sample generated"
-            else:
-                error = "Problem generating sample"
+        if not useridentifier:
+            error = 'Username is required.'
+        elif not userExist:
+            error = 'User "{}" is not registered.'.format(useridentifier)
         else:
-            error = "Please select a Category from the list."
+            if answerValue == "1":
+                result = res.generateSampleQ2(useridentifier)
+                print(result)
+                if result:
+                    error = "Sample generated"
+                else:
+                    error = "Problem generating sample"
+            else:
+                error = "Answer value different from 1."
             
         if error is not None:
             flash(error)

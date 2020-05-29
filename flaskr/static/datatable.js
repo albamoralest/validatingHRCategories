@@ -37,7 +37,7 @@ $(document).ready(function () {
   
   $("#addControl").click(function() {
 	  
-      if (reason < 7) {
+      if (reason < 8) {
     	  reason = reason + 1;
     	  var template = '<div class="input-group" id="div'+reason+'">'+
 			'<select name="category'+reason+'" class="form-control" id="cat'+reason+'">	<option value="00" selected>Choose one category</option>'+
@@ -48,7 +48,8 @@ $(document).ready(function () {
 			 ' <option value="06">Dyslexic and orientation disorders</option>'+
 			 ' <option value="07">Learning difficulty and autism</option>'+
 			 ' <option value="08">Mental Health problems</option>'+
-			 ' <option value="09">Dexterity problems</option> {% endfor %} </select>'+
+			 ' <option value="09">Dexterity problems</option>'+
+			 ' <option value="10">Hearing impaired person</option> {% endfor %} </select>'+
 			 '<span class="input-group-btn"> <button id="remove'+reason+'" class="btn btn-primary remove-me" type="button">-</button> </span> </div>';
 
           // Add select

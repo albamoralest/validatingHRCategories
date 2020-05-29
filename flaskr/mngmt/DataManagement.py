@@ -29,6 +29,9 @@ class DataManagement():
             self.sampleDirectory = os.getcwd()+ '/flaskr/sampleq2/'
         '''print(os.getcwd())
         print(self.resultsDirectory)'''
+    
+    def setUserSampleDir(self, useridentifier):
+        self.sampleDirectory +=useridentifier+'/'
         
     def getTotalExamples(self):
         self.totalResult = len(self.patientList)
@@ -136,7 +139,8 @@ class DataManagement():
                   {'name':'Dyslexic and orientation disorders','id': '06'},
                   {'name':'Learning difficulty and autism','id': '07'},
                   {'name':'Mental Health problems','id': '08'},
-                  {'name':'Dexterity problems','id': '09'}]
+                  {'name':'Dexterity problems','id': '09'},
+                  {'name':'Hearing impaired person','id': '10'}]
         return categories
     
             
@@ -192,23 +196,29 @@ class DataManagement():
         except:
             return False
         
-    def generateSampleQ2(self):
-        self.resultsDirectory = self.resultsDirectory+ 'resultsGSE.csv'
+    def generateSampleQ2(self,useridentification):
+        resultPath = self.resultsDirectory+useridentification+'.csv'
+        
+        
         result = False
         try:
-            with open(self.resultsDirectory, newline='') as f:
+            directory_dest=os.getcwd()+ '/flaskr/sampleq2/'+useridentification+"/"
+            if not os.path.exists(directory_dest):
+                os.makedirs(directory_dest)
+            dir_destin = os.getcwd()+ '/flaskr/sampleq2/' + useridentification+"/"
+            
+            with open(resultPath, newline='') as f:
                 reader = csv.reader(f)
                 samplelist = list(reader)
         
             for item in samplelist:
-                assistance = item[1]
-                idpatient = item[0]
+                assistance = item[3]
+                idpatient = item[2]
                 print(assistance)
                 
                 if assistance == '1' or assistance == '2' or assistance == '3':
                     
                     dir_origin = os.getcwd()+ '/flaskr/sample/' + idpatient + '.json'
-                    dir_destin = os.getcwd()+ '/flaskr/sampleq2/'
 
                     # if item is a file, copy it
                     if os.path.isfile(dir_origin):
@@ -229,9 +239,9 @@ class DataManagement():
         return systemResults
     
     def getResultsQ1GSE(self):
-        self.resultsDirectory = self.resultsDirectory+ 'resultsGSE.csv'
+        localPath = self.resultsDirectory+ 'resultsGSE.csv'
         try:
-            with open(self.resultsDirectory, newline='') as f:
+            with open(localPath, newline='') as f:
                 reader = csv.reader(f)
                 samplelist = list(reader)
         except Exception as e:
@@ -240,10 +250,10 @@ class DataManagement():
         return samplelist
         
     def getGSAnswer(self,identification):
-        self.resultsDirectory = self.resultsDirectory+ 'resultsGSE.csv'
+        localPath = self.resultsDirectory+ 'resultsGSE.csv'
         result = []
         try:
-            with open(self.resultsDirectory, newline='') as f:
+            with open(localPath, newline='') as f:
                 reader = csv.reader(f)
                 samplelist = list(reader)
                 

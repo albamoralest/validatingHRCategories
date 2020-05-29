@@ -1,1 +1,33 @@
-username,question,patientid,answer,value
+username,question,patientid,answer,value,order
+amorales,Q1,27aeefb7-d88c-41cf-b3ff-ed48dbf5163f,4,No
+amorales,Q1,216e106f-4f62-42f5-9e4c-4f435cbd940c,4,No
+amorales,Q1,20e7d770-3d0c-4b48-962a-b23de923ef47,4,No
+amorales,Q1,28c9d8e3-35da-4ed8-8d47-622b1942a9b0,4,No
+amorales,Q1,36f83e73-7c7d-4db3-b2db-d8741f9a24a9,4,No
+amorales,Q1,cfefcecb-bcd6-4fdc-9695-d85fcd0240d9,4,No
+amorales,Q1,c4f6665a-d38f-4fce-9e4c-43e8f76759b4,4,No
+amorales,Q1,204d247c-f15a-40e2-b841-cac96bb03628,4,No
+amorales,Q1,497dba9f-9921-4228-b36f-e7cc3bb34ca8,2,Yes (chronic)
+amorales,Q1,3dd8be55-bebb-43ee-a552-8bd7a9b4b34a,4,No
+amorales,Q1,5a89fa35-06a0-4fad-bc0f-1d4ce1b9f115,4,No
+amorales,Q1,b9ddb869-10b7-460e-9442-51c29740e92b,4,No
+amorales,Q1,c7f89955-e50a-4cd8-860a-7da441dce848,4,No
+amorales,Q1,328da36f-9667-413e-910d-600f90e279ab,4,No
+amorales,Q1,615b4bcc-b29a-4e76-a60c-f7366f8450da,4,No
+amorales,Q1,3cffdd78-8b91-481b-8fc5-485a8c159cf4,4,No
+amorales,Q1,af131947-ec56-4758-a2ac-b08c1103ceea,4,No
+amorales,Q1,587266d7-3d35-4c12-9b9d-0d0aa2a9bfc8,4,No
+amorales,Q1,0fdf4a9f-c925-4e46-9a4f-092ea23fa912,4,No
+amorales,Q1,5652e48b-70ef-43cc-8ec7-274acb8a1190,4,No
+amorales,Q1,07e0c83e-9ab2-49e2-a7b9-8c2d8524e040,3,Yes (both)
+amorales,Q1,5d4a19bf-50e0-4042-aa9a-9d801665facb,2,Yes (chronic)
+amorales,Q1,053c1038-065e-4562-9ae5-7f6ee44ed747,4,No
+amorales,Q1,29760937-c696-4820-9a06-214750f5243f,4,No
+amorales,Q1,212cc0e9-b17d-46c9-95c0-5dc9f9386d0e,4,No
+amorales,Q1,ed353a84-84ee-4ff8-bf59-9e5a3cd35f52,4,No
+amorales,Q1,357d0e53-85d3-4f2b-b3b9-2e2d931686bf,4,No
+amorales,Q1,9eeb7a6a-f895-46af-8af0-8dd2d3d7c32b,4,No
+amorales,Q1,094a5944-8ac9-42dd-92a5-d56b04877a8a,4,No
+amorales,Q1,c770ef91-b0e7-4361-b5c4-d2a5e2945db6,4,Nouser1,Q2,497dba9f-9921-4228-b36f-e7cc3bb34ca8,05,Visually impaired person,1
+user1,Q2,07e0c83e-9ab2-49e2-a7b9-8c2d8524e040,06,Dyslexic and orientation disorders,1
+user1,Q2,5d4a19bf-50e0-4042-aa9a-9d801665facb,03,Mobility impaired person,1

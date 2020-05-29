@@ -38,6 +38,7 @@
 						 		<tr class="table-active">
 						 			<th>First Name</th>
 						 			<th>Last Name</th>
+						 			<!-- <th>DOB</th>  -->
 						 			<th>Age</th>
 						 			{% if notes %}
 						 			<th>Type</th>
@@ -48,6 +49,7 @@
 					        <tr>
 								<td> {{ details['first'] }}</td>
 								<td> {{ details['last'] }}  </td>
+								<!-- <td> {{ details['birthDate'] }}  </td>  -->
 								<td> {{ details['age'] }}  </td>
 								{% if notes %}
 								<td> {{ notes[0] }} </td>
@@ -69,7 +71,7 @@
 		    			<th>Data Point</th>
 		    			<th>Reason Description</th>
 		    			<th>Description</th>
-		    			<th>Start date</th>
+		    			<th >Start date</th>
 		    			<th>End date</th>
 		    			
 		   			</tr>
